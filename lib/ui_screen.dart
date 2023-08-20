@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' ;
-
 import 'api_service.dart';
 
 class testScreen extends StatefulWidget {
@@ -14,27 +13,12 @@ class _testScreenState extends State<testScreen> {
   TextEditingController _V = TextEditingController();
   TextEditingController _AP = TextEditingController();
   TextEditingController _RH = TextEditingController();
+  String result = "";
 
   callLoginApi() {
-    final service = ApiServices();
+    final service = createAlbum(_AT.text ,_V.text ,_AP.text ,_RH.text);
 
-    service.apiCallLogin(
-      {
-        "AT": _AT.text,
-        "V": _V.text,
-        "AP" :_AP.text,
-        "RH":_RH.text,
-      },
-    ).then((value){
-      if(value.error != null){
-        print("get data >>>>>> " + value.error!);
-      }
-      else{
-        print(value.token!);
-        //push
-      }
-    });
-
+    print(service);
   }
   @override
   Widget build(BuildContext context) {
